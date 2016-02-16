@@ -1,0 +1,161 @@
+<div ng-init="queryInit()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-9" style="padding: 0 0 ;"><a ui-sref="addbook" class="btn btn-primary">新增书籍</a></div>
+            <div class="col-md-2" ><button type="button" class="btn btn-danger" ng-click="del()">勾选删除</button></div>
+            
+            <div class="col-md-1"><a ui-sref="index" class="btn btn-primary">退出</a></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <div class="row" style="padding: 0 15px 0 13px;">
+                    <div class="panel-table" id="divId" style="overflow-x: hidden;overflow-y:auto;">
+                        <table class="table table-bordered" id="tbodyId" style="width:100%;height:auto;" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                      <th>
+                        <input type="checkbox"   ng-checked="user.datas.length == dataMsg.length" ng-click="checkAll()"></th>
+                                    <th style="text-align:center;">ID</th>
+                                    <th style="text-align:center;">书名</th>
+                                    <th style="text-align:center;">作者</th>
+                                    <th style="text-align:center;">出版日期</th>
+                                      <th style="text-align:center;">类型</th>
+                                    <th style="text-align:center;">单价</th>
+                                    <th style="text-align:center;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dataMsgInfo in dataMsg track by $index">
+                                    <td>
+                             <input type="checkbox" checklist-model="user.datas" checklist-value="dataMsgInfo.bookId" >
+                        </td>
+                                    <td>{{dataMsgInfo.bookId}}</td>
+                                    <td>{{dataMsgInfo.name }}</td>
+                                    <td>{{dataMsgInfo.author}}</td>
+                                    <td>{{dataMsgInfo.pubTime }}</td>
+                                    <td>{{dataMsgInfo.bookType}}</td>
+                                    <td contenteditable="true">{{dataMsgInfo.price}}</td>
+                                    <th style="text-align:center;"><a class="btn btn-primary" ng-click="updateBook(dataMsgInfo)">修改</a>
+                                        <a class="btn  btn-danger" ng-click="open(dataMsgInfo)">删除</a>
+
+                                        </th>
+                                </tr>
+                                
+                            </tbody>
+                        </table> 
+                    </div>
+                        <page total-count="beondutySize" page-count="perPageNum" current-page="curPage" go-page="beondutyGoPage(currentPage)" 
+						show-max-page="6" first-text="首页" last-text="末页" previous-text="上一页" next-text="下一页">
+                        </page>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+    <!--     <div ng-controller="divCtrl" id="deleteMessage" class="reveal-modal message-style " data-reveal style="width:30%;margin:0 auto;">
+        <h3>警告</h3>
+        <div class="row">
+            <div class="large-12 columns" style="padding: 0">
+                <label class="left" style="color: #999;"><h4>确认要删除吗！！！</h4></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-8 columns" style="padding: 0"> 
+                <button class="btn btn-primary " ng-click="delete()">确认</button>
+                <button class="btn btn-primary " ng-click="close()">取消</button>
+                
+            </div>
+        </div>
+        <a class="close-reveal-modal" ng-click="close()">&#215;</a>
+    </div> -->
+</div>
+
+
+  <div id="deleteMessage" class="reveal-modal message-style container" data-reveal style="width:30%;margin:0 auto;">
+        <h3>警告</h3>
+        <div class="row">
+            <div class="large-12 columns" style="padding: 0">
+                <label class="left" style="color: #999;"><h4>确认要删除吗！！！</h4></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-8 columns" style="padding: 0"> 
+                <button class="btn btn-primary " ng-click="delete()">确认</button>
+                <button class="btn btn-primary " ng-click="close()">取消</button>
+                
+            </div>
+        </div>
+        <a class="close-reveal-modal" ng-click="close()">&#215;</a>
+    </div> 
+    <div class="zeng_msgbox_layer_wrap" id="q_Msgbox" style=" display:none; "></div>
+
+
+
+  <div id="updateMessage" class="reveal-modal message-style" data-reveal >
+       <div class="panel panel-primary" ng-init="getdateMsgInfo()">
+    <div class="panel-heading">
+        <div class="panel-title">修改书籍</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" role="form" name="form">
+             
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            书名：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="最多64个字符" ng-model="dataMsgInfo.name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            作者：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="最多16个字符" ng-model="dataMsgInfo.author">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            出版日期：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="日期格式YYYY-mm-dd" ng-model="dataMsgInfo.pubTime">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            类型：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="最多16个字符" ng-model="dataMsgInfo.bookType">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            单价：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="最多16个字符" ng-model="dataMsgInfo.price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <a class="btn btn-success" ng-click="updateBook1()">保存</a>
+                            <a ui-sref="index" class="btn btn-primary" ng-click="updateBook(dateMsgInfo)">取消</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        <a class="close-reveal-modal" ng-click="close()">&#215;</a>
+    </div> 

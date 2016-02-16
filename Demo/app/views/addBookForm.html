@@ -1,0 +1,56 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">新增书籍</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" role="form" name="form">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            书名：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="最多64个字符" ng-model="userInfo.bookTitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            类型：
+                        </label>
+                        <div class="col-md-10">
+                            <select class="form-control" ng-model="userInfo.bookType">
+                                <option value="0">计算机</option>
+                                <option value="1">金融</option>
+                                <option value="2">小说</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            出版日期：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="日期格式YYYY-mm-dd" ng-model="userInfo.pubTime">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            作者：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="最多16个字符" ng-model="userInfo.author">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <a class="btn btn-success" ng-click="save()">保存</a>
+                            <a ui-sref="index" class="btn btn-primary">取消</a>
+                            <!-- <button class="btn btn-default" ng-click="setFormData()">清空表单</button> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

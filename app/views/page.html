@@ -1,0 +1,15 @@
+<div >
+	<ul class="pagination right">
+    	<li class="arrow">总条数{{totalCount}}</li>
+		<li class="arrow">当前为第{{currentPage}}页</li>
+		<li class="arrow">转到第</li>
+		<li><input type="text"  ng-init="GO = 1" ng-model="GO" style="display: inline;width: 35px;height: 24px;margin-top: 0px;"/></li>
+		<li>页 </li>
+		<li class="arrow" ><a href="" ng-disabled="false" class="ng-binding" style="background-color:#3c79b8;color:white" ng-click='setCurrentPage(GO)'>GO</a></li>
+        <li class="arrow"><a href="" ng-click="setCurrentPage(1)">{{firstText}}</a></li>
+        <li class="arrow"><a href="" ng-click="setCurrentPage(currentPage-1)">{{previousText}}</a></li>
+        <li ng-class="{current:pageno == currentPage}" ng-repeat="pageno in pages"><a href="" ng-click="setCurrentPage(pageno)">{{pageno}}</a></li>
+        <li class="arrow"><a href="" ng-click="setCurrentPage(currentPage-0+1)">{{nextText}}</a></li>
+        <li class="arrow"><a href="" ng-click="setCurrentPage(totalPage)">{{lastText}}</a></li>
+    </ul>
+</div>

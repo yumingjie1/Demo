@@ -1,0 +1,47 @@
+.STYLE1 {font-weight: bold}
+.STYLE2 {font-weight: bold}
+.STYLE3 {font-weight: bold}
+.STYLE4 {font-weight: bold}
+
+.left-menu {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+.main-menu {
+  width: 220px;
+  float: left;
+  height: auto;
+  min-height: 100%;
+  overflow: hidden;
+  -moz-transition: width 0.5s ease-in;
+  -webkit-transition: width 0.5s ease-in;
+  -o-transition: width 0.5s ease-in;
+  transition: width 0.5s ease-in;
+  background-color: rgba(1, 77, 40, 0.3);
+}
+.monitor-content {
+  padding-left: 10px;
+}
+.main-cantent {
+  width: auto;
+  margin-left: 230px;
+  -moz-transition: margin-left 0.5s ease-in;
+  -webkit-transition: margin-left 0.5s ease-in;
+  -o-transition: margin-left 0.5s ease-in;
+  transition: margin-left 0.5s ease-in;
+}
+
+.expander {
+            border:1px solid black;
+            width:250px;
+        }
+        .expander >.title{
+            background-color:black;
+            color:white;
+            padding:.1em .3em;
+            cursor:pointer;
+        }
+        .expander >.body{
+            padding:.1em .3em;
+        }
